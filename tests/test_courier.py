@@ -64,7 +64,7 @@ class TestLoginCourier:
     @pytest.mark.parametrize("exclude_param", [CourierService.EXCLUDE_PARAMETERS["login"], CourierService.EXCLUDE_PARAMETERS["password"]])
     def test_login_courier_without_fields_not_authorized(self, random_courier, exclude_param):
         Courier.register_courier(random_courier)
-        payload = Courier.excludes_parameter_from_courier_registration_data(random_courier, exclude=exclude_param)
+        payload = Courier.clean_parameter_from_courier_auth_data(random_courier, exclude=exclude_param)
         response = Courier.login_courier(payload)
         assert response.status_code == TestMessages.COURIER_NOT_ENOUGH_AUTHORIZATION_WITHOUT_LOGIN_OR_PASSWORD["code"]
         assert response.json()["message"] == TestMessages.COURIER_NOT_ENOUGH_AUTHORIZATION_WITHOUT_LOGIN_OR_PASSWORD["message"]

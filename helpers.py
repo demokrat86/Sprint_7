@@ -156,6 +156,17 @@ class Courier:
         del data_copy[exclude]
         return data_copy
 
+        # метод 
+    @staticmethod
+    @allure.step('Очистить значение по ключу')
+    def clean_parameter_from_courier_auth_data(register_courier, exclude):
+        data_copy = copy.deepcopy(register_courier)
+        data_copy[exclude] = ''
+        return data_copy
+
+
+
+
     # метод изменяет значение по ключу, обрезает последний символ
     @staticmethod
     @allure.step('Изменить значение по ключу')
